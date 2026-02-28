@@ -4,12 +4,7 @@
     internal class Program
     {
 
-        static List<Store> stores = new List<Store>()
-        {
-            new Store{Name="Ligaya Store",Location="Muntinlupa City",Profits=500000,Expenses=200000,Employees=150,Products=1000},
-            new Store{Name="Boni Store",Location="Mandaluyong City",Profits=300000,Expenses=100000,Employees=100,Products=500},
-            new Store{Name="Ledezma Enterprise",Location="Pasig City",Profits=400000,Expenses=150000,Employees=120,Products=800}
-        };
+       
 
 
         static void Main(string[] args)
