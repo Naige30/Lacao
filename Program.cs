@@ -123,24 +123,25 @@ namespace Lacao
         {
             Console.Write("Enter store name to update:");
             string name = Console.ReadLine();
-            foreach (var s in stores)
+            
+            for (int i=0; i < storeNames.Count; i++)
             {
-                if (s.Name.Equals(name, StringComparison.OrdinalIgnoreCase))
+                if (storeNames[i].Equals(name, StringComparison.OrdinalIgnoreCase))
                 {
-                    Console.Write("New Location: ");
-                    s.Location = Console.ReadLine();
-                    Console.Write("Updated Profit: ");
-                    s.Profits = Convert.ToDouble(Console.ReadLine());
-                    Console.Write("Updated Expenses: ");
-                    s.Expenses = Convert.ToDouble(Console.ReadLine());
-                    Console.Write("Number of Employees: ");
-                    s.Employees = Convert.ToInt16(Console.ReadLine());
-                    Console.Write("Number of Products: ");
-                    s.Products = Convert.ToInt16(Console.ReadLine());
-
-                    Console.WriteLine("Store Details Updated Successfully");
+                    Console.Write("Enter new store name:");
+                    storeNames[i] = Console.ReadLine();
+                    Console.Write("Enter new store location:");
+                    locations[i] = Console.ReadLine();
+                    Console.Write("Enter new store profits: ");
+                    profits[i] = Convert.ToDouble(Console.ReadLine());
+                    Console.Write("Enter new store expenses: ");
+                    expenses[i] = Convert.ToDouble(Console.ReadLine());
+                    Console.Write("Enter new store employees: ");
+                    employees[i] = Convert.ToInt16(Console.ReadLine());
+                    Console.Write("Enter new store products: ");
+                    products[i] = Convert.ToInt16(Console.ReadLine());
+                    Console.WriteLine("Store updated successfully");
                     return;
-
                 }
             }
             Console.WriteLine("Store not Found");
@@ -148,13 +149,18 @@ namespace Lacao
         static void DeleteStore()
         {
             Console.Write("Enter store name to delete:");
-            string Name = Console.ReadLine();
+            string name = Console.ReadLine();
 
-            for (int i = 0; i < stores.Count; i++)
+            for (int i = 0; i < storeNames.Count; i++)
             {
-                if (stores[i].Name.Equals(Name, StringComparison.OrdinalIgnoreCase))
+                if (storeNames[i].Equals(name, StringComparison.OrdinalIgnoreCase))
                 {
-                    stores.RemoveAt(i);
+                    storeNames.RemoveAt(i);
+                    locations.RemoveAt(i);
+                    profits.RemoveAt(i);
+                    expenses.RemoveAt(i);
+                    employees.RemoveAt(i);
+                    products.RemoveAt(i);
                     Console.WriteLine("Store Removed from database");
                     return;
                 }
