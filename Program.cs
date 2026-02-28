@@ -81,20 +81,19 @@ namespace Lacao
 
         static void AddStore()
         {
-            Store s = new Store();
+            
             Console.Write("Enter store name:");
-            s.Name = Console.ReadLine();
+            storeNames.Add(Console.ReadLine());
             Console.Write("Enter store location:");
-            s.Location = Console.ReadLine();
+            locations.Add(Console.ReadLine());
             Console.Write("Enter store profits: ");
-            s.Profits = Convert.ToDouble(Console.ReadLine());
+            profits.Add(Convert.ToDouble(Console.ReadLine()));
             Console.Write("Enter store expenses: ");
-            s.Expenses = Convert.ToDouble(Console.ReadLine());
+            expenses.Add(Convert.ToDouble(Console.ReadLine()));
             Console.Write("Enter store employees: ");
-            s.Employees = Convert.ToInt16(Console.ReadLine());
+            employees.Add(Convert.ToInt16(Console.ReadLine()));
             Console.Write("Enter store products: ");
-            s.Products = Convert.ToInt16(Console.ReadLine());
-            stores.Add(s);
+            products.Add(Convert.ToInt16(Console.ReadLine()));
             Console.WriteLine("Store added successfully");
 
 
@@ -102,22 +101,23 @@ namespace Lacao
 
         static void ViewStore()
         {
-            Console.Write("Enter store name to view:");
-            string name = Console.ReadLine();
-            foreach (var s in stores)
+            if (storeNames.Count == 0)
             {
-                if (s.Name.Equals(name, StringComparison.OrdinalIgnoreCase))
-                {
-                    Console.WriteLine("\nName: " + s.Name);
-                    Console.WriteLine("Location: " + s.Location);
-                    Console.WriteLine("Profits: " + s.Profits);
-                    Console.WriteLine("Expenses: " + s.Expenses);
-                    Console.WriteLine("Employees: " + s.Employees);
-                    Console.WriteLine("Products: " + s.Products);
-                    return;
-                }
+                Console.WriteLine("No Stores Registered");
+                return;
             }
-            Console.WriteLine("Store not found or not Registered");
+            Console.WriteLine("\n===STORE LIST===");
+            for(int i=0;i<storeNames.Count; i++ )
+            {
+                Console.WriteLine($"\nSTORE #{i + 1}");
+                Console.WriteLine("Name: " + storeNames[i]);
+                Console.WriteLine("Location: " + locations[i]);
+                Console.WriteLine("Profits: " + profits[i]);
+                Console.WriteLine("Expenses: " + expenses[i]);
+                Console.WriteLine("Employees: " + employees[i]);
+                Console.WriteLine("Products: " + products[i]);
+            }
+            
         }
         static void UpdateStore()
         {
