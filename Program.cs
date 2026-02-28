@@ -1,14 +1,6 @@
 ﻿namespace Lacao
 {
-    class Store
-    {
-        public string Name;
-        public string Location;
-        public double Profits;
-        public double Expenses;
-        public int Employees;
-        public int Products;
-    }
+ 
     internal class Program
     {
 
