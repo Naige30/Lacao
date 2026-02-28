@@ -1,14 +1,21 @@
-﻿namespace Lacao
+﻿using System.ComponentModel;
+using System.Data.SqlTypes;
+
+namespace Lacao
 {
  
     internal class Program
     {
-
-       
-
+        static List<string> storeNames = new List<string>();
+        static List<string> locations = new List<string>();
+        static List<double> profits = new List<double>();
+        static List<double> expenses = new List<double>();
+        static List<int> products = new List<int>();
+        static List<int> employees = new List<int>();
 
         static void Main(string[] args)
         {
+            PopulateDefaultStores();
             while (true)
             {
                 Console.WriteLine("===STORE MENU===");
@@ -44,6 +51,32 @@
                         break;
                 }
             }
+        }
+        static void PopulateDefaultStores()
+        {
+            storeNames.Add("Ligaya Store");
+            storeNames.Add("Amaranth Store");
+            storeNames.Add("Rizen Store");
+
+            locations.Add("Makati City");
+            locations.Add("Muntinlupa City");
+            locations.Add("San Pedro Laguna");
+
+            profits.Add(100000);
+            profits.Add(999999);
+            profits.Add(670000);
+
+            expenses.Add(50000);
+            expenses.Add(42490);
+            expenses.Add(300509);
+
+            employees.Add(150);
+            employees.Add(89);
+            employees.Add(67);
+
+            products.Add(500);
+            products.Add(300);
+            products.Add(900);
         }
 
         static void AddStore()
