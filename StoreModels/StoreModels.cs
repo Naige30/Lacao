@@ -6,5 +6,6 @@ namespace StoreModels
 {
     internal class StoreModels
     {
+
     }
 }

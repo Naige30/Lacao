@@ -6,5 +6,6 @@ namespace CRUDStoreDataService
 {
     internal class StoreDataService
     {
+
     }
 }
