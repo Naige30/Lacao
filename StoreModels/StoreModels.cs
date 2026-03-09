@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace StoreModels
 {
-    public class Store
+    internal class StoreModels
     {
-        public string Name { get; set; }
-        public string Location { get; set; }
-        public double Profit { get; set; }
-        public double Expenses { get; set; }
-        public int Employees { get; set; }
-        public int Products { get; set; }
     }
 }

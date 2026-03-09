@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRUDStoreDataService", "CRU
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreAppService", "StoreAppService\StoreAppService.csproj", "{3847A091-5AEB-47C4-9634-7CBCD3A149C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreModels", "StoreModels\StoreModels.csproj", "{88BED7A2-E306-49BA-B1B7-9A2303B1CEE6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreModels", "..\StoreModels\StoreModels.csproj", "{AD4659C9-B78D-4ED6-861E-2E2E5CDBFE3D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{3847A091-5AEB-47C4-9634-7CBCD3A149C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3847A091-5AEB-47C4-9634-7CBCD3A149C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3847A091-5AEB-47C4-9634-7CBCD3A149C2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{88BED7A2-E306-49BA-B1B7-9A2303B1CEE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{88BED7A2-E306-49BA-B1B7-9A2303B1CEE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{88BED7A2-E306-49BA-B1B7-9A2303B1CEE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{88BED7A2-E306-49BA-B1B7-9A2303B1CEE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD4659C9-B78D-4ED6-861E-2E2E5CDBFE3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD4659C9-B78D-4ED6-861E-2E2E5CDBFE3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD4659C9-B78D-4ED6-861E-2E2E5CDBFE3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD4659C9-B78D-4ED6-861E-2E2E5CDBFE3D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
