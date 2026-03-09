@@ -22,9 +22,13 @@ namespace StoreAppService
         {
             repo.AddStore(store);
         }
-        public List<Store> GetAllStores()
+        public List<Store> ViewStores()
         {
             return repo.GetAllStores();
+        }
+        public bool DeleteStore(string name)
+        {
+            return repo.DeleteStore(name);
         }
         public bool UpdateStore(string name, Store newStore)
         {

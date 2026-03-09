@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CRUDStoreDataService\CRUDStoreDataService.csproj" />
+    <ProjectReference Include="..\StoreModels\StoreModels.csproj" />
+  </ItemGroup>
+
 </Project>
