@@ -1,21 +1,19 @@
 ﻿using System.ComponentModel;
 using System.Data.SqlTypes;
-
+using StoreAppService;
+using StoreModels;
 namespace Lacao
 {
  
     internal class Program
     {
-        static List<string> storeNames = new List<string>();
-        static List<string> locations = new List<string>();
-        static List<double> profits = new List<double>();
-        static List<double> expenses = new List<double>();
-        static List<int> products = new List<int>();
-        static List<int> employees = new List<int>();
+        static StoreService service = new StoreService();
+         
 
         static void Main(string[] args)
         {
-            PopulateDefaultStores();
+           service.PopulateDefaultStores();
+            
             while (true)
             {
                 Console.WriteLine("===STORE MENU===");
@@ -34,7 +32,7 @@ namespace Lacao
                         AddStore();
                         break;
                     case 2:
-                        ViewStore();
+                        ViewStores();
                         break;
                     case 3:
                         UpdateStore();
@@ -45,127 +43,94 @@ namespace Lacao
                     case 0:
                         Console.WriteLine("Exiting...");
                         return;
-                        break;
+                        
                     default:
                         Console.WriteLine("Invalid choice");
                         break;
                 }
             }
         }
-        static void PopulateDefaultStores()
-        {
-            storeNames.Add("Ligaya Store");
-            storeNames.Add("Amaranth Store");
-            storeNames.Add("Rizen Store");
-
-            locations.Add("Makati City");
-            locations.Add("Muntinlupa City");
-            locations.Add("San Pedro Laguna");
-
-            profits.Add(100000);
-            profits.Add(999999);
-            profits.Add(670000);
-
-            expenses.Add(50000);
-            expenses.Add(42490);
-            expenses.Add(300509);
-
-            employees.Add(150);
-            employees.Add(89);
-            employees.Add(67);
-
-            products.Add(500);
-            products.Add(300);
-            products.Add(900);
-        }
+        
 
         static void AddStore()
         {
-            
-            Console.Write("Enter store name:");
-            storeNames.Add(Console.ReadLine());
+            Store store = new Store();
+           Console.Write("Enter store name:");
+            store.Name = Console.ReadLine();
             Console.Write("Enter store location:");
-            locations.Add(Console.ReadLine());
+            store.Location = Console.ReadLine();
             Console.Write("Enter store profits: ");
-            profits.Add(Convert.ToDouble(Console.ReadLine()));
+            store.Profit = Convert.ToDouble(Console.ReadLine());
             Console.Write("Enter store expenses: ");
-            expenses.Add(Convert.ToDouble(Console.ReadLine()));
+            store.Expenses = Convert.ToDouble(Console.ReadLine());
             Console.Write("Enter store employees: ");
-            employees.Add(Convert.ToInt16(Console.ReadLine()));
+            store.Employees = Convert.ToInt16(Console.ReadLine());
             Console.Write("Enter store products: ");
-            products.Add(Convert.ToInt16(Console.ReadLine()));
+            store.Products = Convert.ToInt16(Console.ReadLine());
+            service.AddStore(store);
             Console.WriteLine("Store added successfully");
 
 
         }
 
-        static void ViewStore()
+        static void ViewStores()
         {
-            if (storeNames.Count == 0)
+            var stores = service.ViewStores();
+            if (stores.Count == 0)
             {
-                Console.WriteLine("No Stores Registered");
+                Console.WriteLine("No stores found");
                 return;
             }
-            Console.WriteLine("\n===STORE LIST===");
-            for(int i=0;i<storeNames.Count; i++ )
+            int i = 1;
+            foreach (var store in stores)
             {
-                Console.WriteLine($"\nSTORE #{i + 1}");
-                Console.WriteLine("Name: " + storeNames[i]);
-                Console.WriteLine("Location: " + locations[i]);
-                Console.WriteLine("Profits: " + profits[i]);
-                Console.WriteLine("Expenses: " + expenses[i]);
-                Console.WriteLine("Employees: " + employees[i]);
-                Console.WriteLine("Products: " + products[i]);
+                Console.WriteLine($"Store {i++}:");
+                Console.WriteLine($"Name: {store.Name}");
+                Console.WriteLine($"Location: {store.Location}");
+                Console.WriteLine($"Profit: {store.Profit}");
+                Console.WriteLine($"Expenses: {store.Expenses}");
+                Console.WriteLine($"Employees: {store.Employees}");
+                Console.WriteLine($"Products: {store.Products}");
+               
             }
-            
+
         }
         static void UpdateStore()
         {
             Console.Write("Enter store name to update:");
             string name = Console.ReadLine();
-            
-            for (int i=0; i < storeNames.Count; i++)
+
+            Store newStore = new Store();
+            Console.Write("Enter new store Name:");
+            newStore.Name = Console.ReadLine();
+            Console.Write("Enter new store location:");
+            newStore.Location = Console.ReadLine();
+            Console.Write("Enter new store profits: ");
+            newStore.Profit = Convert.ToDouble(Console.ReadLine());
+            Console.Write("Enter new store expenses: ");
+            newStore.Expenses = Convert.ToDouble(Console.ReadLine());
+            Console.Write("Enter new store employees: ");
+            newStore.Employees = Convert.ToInt16(Console.ReadLine());
+            Console.Write("Enter new store products: ");
+            newStore.Products = Convert.ToInt16(Console.ReadLine());
+
+            if (service.UpdateStore(name, newStore))
             {
-                if (storeNames[i].Equals(name, StringComparison.OrdinalIgnoreCase))
-                {
-                    Console.Write("Enter new store name:");
-                    storeNames[i] = Console.ReadLine();
-                    Console.Write("Enter new store location:");
-                    locations[i] = Console.ReadLine();
-                    Console.Write("Enter new store profits: ");
-                    profits[i] = Convert.ToDouble(Console.ReadLine());
-                    Console.Write("Enter new store expenses: ");
-                    expenses[i] = Convert.ToDouble(Console.ReadLine());
-                    Console.Write("Enter new store employees: ");
-                    employees[i] = Convert.ToInt16(Console.ReadLine());
-                    Console.Write("Enter new store products: ");
-                    products[i] = Convert.ToInt16(Console.ReadLine());
-                    Console.WriteLine("Store updated successfully");
-                    return;
-                }
+                Console.WriteLine("Store Updated successfully");
             }
-            Console.WriteLine("Store not Found");
+            else
+            {
+                Console.WriteLine("Store Does not Exist");
+            }
         }
         static void DeleteStore()
         {
             Console.Write("Enter store name to delete:");
             string name = Console.ReadLine();
-
-            for (int i = 0; i < storeNames.Count; i++)
-            {
-                if (storeNames[i].Equals(name, StringComparison.OrdinalIgnoreCase))
-                {
-                    storeNames.RemoveAt(i);
-                    locations.RemoveAt(i);
-                    profits.RemoveAt(i);
-                    expenses.RemoveAt(i);
-                    employees.RemoveAt(i);
-                    products.RemoveAt(i);
-                    Console.WriteLine("Store Removed from database");
-                    return;
-                }
-            }
-            Console.WriteLine("Store Does not Exist");
+            if(service.DeleteStore(name))
+                Console.WriteLine("Store Deleted successfully");
+            else
+                Console.WriteLine("Store Does not Exist");
         }
     }
 }
