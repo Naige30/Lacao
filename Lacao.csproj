@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="StoreAppService\StoreAppService.csproj" />
+    <ProjectReference Include="StoreModels\StoreModels.csproj" />
   </ItemGroup>
 
 </Project>
