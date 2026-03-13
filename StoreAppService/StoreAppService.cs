@@ -7,6 +7,8 @@ using static System.Formats.Asn1.AsnWriter;
 
 namespace StoreAppService
 {
+    //GianLACAO
+    //Business Logic Layer
     public class StoreService
     {
         private StoreRepository repo = new StoreRepository();

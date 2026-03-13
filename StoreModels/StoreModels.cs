@@ -4,6 +4,8 @@ using System.Text;
 
 namespace StoreModels
 {
+    //GianLACAO
+    //Models Layer
     public class Store
     {
         public string Name { get; set; }

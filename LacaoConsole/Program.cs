@@ -5,6 +5,7 @@ using StoreModels;
 namespace Lacao
 {
  //GianLACAO
+ //Console UI Layer
     internal class Program
     {
         static StoreService service = new StoreService();
