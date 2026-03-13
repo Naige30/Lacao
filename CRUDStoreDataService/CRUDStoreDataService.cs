@@ -6,6 +6,8 @@ using static System.Formats.Asn1.AsnWriter;
 
 namespace CRUDStoreDataService
 {
+    //GianLACAO
+    //Data Logic Layer
     public class StoreRepository
     {
         private List<Store> stores = new List<Store>();
