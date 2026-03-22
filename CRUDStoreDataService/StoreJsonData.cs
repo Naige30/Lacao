@@ -9,7 +9,7 @@ using StoreModels;
 
 namespace CRUDStoreDataService
 {
-    public class StoreJsonData
+    public class StoreJsonData : IStoreDataService
     {
         private List<Store> stores = new List<Store>();
         private string _jsonFileName;

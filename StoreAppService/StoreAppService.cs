@@ -11,7 +11,7 @@ namespace StoreAppService
     //Business Logic Layer
     public class StoreService
     {
-        private IStoreDataService repo = new StoreDBData();
+        private IStoreDataService repo = new StoreJsonData();
 
         public void AddStore(Store store)
         {
