@@ -76,7 +76,7 @@ namespace CRUDStoreDataService
         }
         public Store? GetById(Guid id)
         {
-            string query = "SELECT*FROM Stores WHERE StoreId=@Id";
+            string query = "SELECT*FROM Stores WHERE Id=@Id";
             SqlCommand cmd = new SqlCommand(query, sqlConnection);
             cmd.Parameters.AddWithValue("@Id", id);
             sqlConnection.Open();
@@ -86,7 +86,7 @@ namespace CRUDStoreDataService
             {
                 store = new Store
                 {
-                    StoreId = Guid.Parse(reader["StoreId"].ToString()),
+                    StoreId = Guid.Parse(reader["Id"].ToString()),
                     Name = reader["Name"].ToString(),
                     Location = reader["Location"].ToString(),
                     Profit = Convert.ToDouble(reader["Profit"]),
@@ -101,16 +101,17 @@ namespace CRUDStoreDataService
 
         public void Update(Store store)
         {
-            string update= @"UPDATE Stores SET Name=@Name, Location=@Location, Profit=@Profit, Expenses=@Expenses, Employees=@Employees, Products=@Products WHERE StoreId=@Id";
+            string update= @"UPDATE Stores SET Name=@Name, Location=@Location, Profit=@Profit, Expenses=@Expenses, Employees=@Employees, Products=@Products WHERE Id=@Id";
        
         SqlCommand cmd = new SqlCommand(update, sqlConnection);
-        cmd.Parameters.AddWithValue("@Id", store.StoreId);
+        
         cmd.Parameters.AddWithValue("@Name", store.Name);
         cmd.Parameters.AddWithValue("@Location", store.Location);
         cmd.Parameters.AddWithValue("Profit", store.Profit);
         cmd.Parameters.AddWithValue("@Expenses", store.Expenses);   
         cmd.Parameters.AddWithValue("@Employees", store.Employees);
         cmd.Parameters.AddWithValue("@Products", store.Products);
+        cmd.Parameters.AddWithValue("@Id", store.StoreId);
 
             sqlConnection.Open();
             cmd.ExecuteNonQuery();
@@ -124,7 +125,7 @@ namespace CRUDStoreDataService
 
         public bool Delete(Guid id)
         {
-            string delete= @"DELETE FROM Stores WHERE StoreId=@Id";
+            string delete= @"DELETE FROM Stores WHERE Id=@Id";
 
             SqlCommand cmd = new SqlCommand(delete, sqlConnection);
             cmd.Parameters.AddWithValue("@Id", id);
