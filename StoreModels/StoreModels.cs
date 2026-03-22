@@ -8,6 +8,7 @@ namespace StoreModels
     //Models Layer
     public class Store
     {
+        public Guid StoreId { get; set; }= Guid.NewGuid();
         public string Name { get; set; }
         public string Location { get; set; }
         public double Profit { get; set; }

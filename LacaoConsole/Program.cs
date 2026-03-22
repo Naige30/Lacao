@@ -13,7 +13,7 @@ namespace Lacao
 
         static void Main(string[] args)
         {
-           service.PopulateDefaultStores();
+          
             
             while (true)
             {
@@ -85,7 +85,7 @@ namespace Lacao
             int i = 1;
             foreach (var store in stores)
             {
-                Console.WriteLine($"Store {i++}:");
+                Console.WriteLine($"ID:{store.StoreId}");
                 Console.WriteLine($"Name: {store.Name}");
                 Console.WriteLine($"Location: {store.Location}");
                 Console.WriteLine($"Profit: {store.Profit}");
@@ -98,40 +98,47 @@ namespace Lacao
         }
         static void UpdateStore()
         {
-            Console.Write("Enter store name to update:");
-            string name = Console.ReadLine();
+            ViewStores();
+            Console.Write("Enter Store ID: ");
+            Guid id = Guid.Parse(Console.ReadLine());
 
-            Store newStore = new Store();
-            Console.Write("Enter new store Name:");
-            newStore.Name = Console.ReadLine();
-            Console.Write("Enter new store location:");
-            newStore.Location = Console.ReadLine();
-            Console.Write("Enter new store profits: ");
-            newStore.Profit = Convert.ToDouble(Console.ReadLine());
-            Console.Write("Enter new store expenses: ");
-            newStore.Expenses = Convert.ToDouble(Console.ReadLine());
-            Console.Write("Enter new store employees: ");
-            newStore.Employees = Convert.ToInt16(Console.ReadLine());
-            Console.Write("Enter new store products: ");
-            newStore.Products = Convert.ToInt16(Console.ReadLine());
+            Store updated = new Store();
+            updated.StoreId = id;
 
-            if (service.UpdateStore(name, newStore))
-            {
-                Console.WriteLine("Store Updated successfully");
-            }
+            Console.Write("New Name: ");
+            updated.Name = Console.ReadLine();
+
+            Console.Write("New Location: ");
+            updated.Location = Console.ReadLine();
+
+            Console.Write("New Profit: ");
+            updated.Profit = Convert.ToDouble(Console.ReadLine());
+
+            Console.Write("New Expenses: ");
+            updated.Expenses = Convert.ToDouble(Console.ReadLine());
+
+            Console.Write("New Employees: ");
+            updated.Employees = Convert.ToInt32(Console.ReadLine());
+
+            Console.Write("New Products: ");
+            updated.Products = Convert.ToInt32(Console.ReadLine());
+
+            if (service.UpdateStore(updated))
+                Console.WriteLine("Updated!");
             else
-            {
-                Console.WriteLine("Store Does not Exist");
-            }
+                Console.WriteLine("Store not found!");
         }
         static void DeleteStore()
         {
-            Console.Write("Enter store name to delete:");
-            string name = Console.ReadLine();
-            if(service.DeleteStore(name))
-                Console.WriteLine("Store Deleted successfully");
+            ViewStores();
+
+            Console.Write("Enter Store ID: ");
+            Guid id = Guid.Parse(Console.ReadLine());
+
+            if (service.DeleteStore(id))
+                Console.WriteLine("Deleted!");
             else
-                Console.WriteLine("Store Does not Exist");
+                Console.WriteLine("Store not found!");
         }
     }
 }
