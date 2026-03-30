@@ -25,7 +25,11 @@ namespace Lacao
                 Console.WriteLine("0. Exit");
                 Console.Write("Enter your choice:");
 
-                int choice = Convert.ToInt16(Console.ReadLine());
+                int choice;
+                while (!int.TryParse(Console.ReadLine(), out choice))
+                {
+                    Console.Write("Invalid choice! \nEnter choice: ");
+                }
 
                 switch (choice)
                 {
@@ -61,17 +65,44 @@ namespace Lacao
             Console.Write("Enter store location:");
             store.Location = Console.ReadLine();
             Console.Write("Enter store profits: ");
-            store.Profit = Convert.ToDouble(Console.ReadLine());
+            double profit;
+            while (!double.TryParse(Console.ReadLine(), out profit))
+            {
+                Console.Write("Invalid input! Enter a valid number for profit: ");
+            }
+            store.Profit = profit;
             Console.Write("Enter store expenses: ");
-            store.Expenses = Convert.ToDouble(Console.ReadLine());
+            double expenses;
+            while (!double.TryParse(Console.ReadLine(), out expenses))
+            {
+                Console.Write("Invalid input! Enter a valid number for expenses: ");
+            }
+            store.Expenses = expenses;
             Console.Write("Enter store employees: ");
-            store.Employees = Convert.ToInt16(Console.ReadLine());
+            int employees;
+            while (!int.TryParse(Console.ReadLine(), out employees))
+            {
+                Console.Write("Invalid input! Enter a valid number for employees: ");
+            }
+            store.Employees = employees;
             Console.Write("Enter store products: ");
-            store.Products = Convert.ToInt16(Console.ReadLine());
-            service.AddStore(store);
-            Console.WriteLine("Store added successfully");
+            int products;
+            while (!int.TryParse(Console.ReadLine(), out products))
+            {
+                Console.Write("Invalid input! Enter a valid number for products: ");
+            }
+            store.Products = products;
 
+            if (ConfirmAction("Do you want to add this store?"))
+            {
+                service.AddStore(store);
+                Console.WriteLine("Store added successfully");
+            }
+            else
+            {
+                Console.WriteLine("Store addition cancelled");
 
+            }
         }
 
         static void ViewStores()
@@ -99,8 +130,18 @@ namespace Lacao
         static void UpdateStore()
         {
             ViewStores();
-            Console.Write("Enter Store ID: ");
-            Guid id = Guid.Parse(Console.ReadLine());
+            
+            Guid id;
+            while (true)
+            {
+                Console.Write("Enter Store ID: ");
+                string input = Console.ReadLine();
+
+                if (Guid.TryParse(input, out id))
+                    break;
+
+                Console.WriteLine("Invalid ID format! Try again.");
+            }
 
             Store updated = new Store();
             updated.StoreId = id;
@@ -112,33 +153,91 @@ namespace Lacao
             updated.Location = Console.ReadLine();
 
             Console.Write("New Profit: ");
-            updated.Profit = Convert.ToDouble(Console.ReadLine());
+            double profit;
+            while (!double.TryParse(Console.ReadLine(), out profit))
+            {
+                Console.Write("Invalid input! Enter valid profit: ");
+            }
+            updated.Profit = profit;
 
             Console.Write("New Expenses: ");
-            updated.Expenses = Convert.ToDouble(Console.ReadLine());
+            double expenses;
+            while (!double.TryParse(Console.ReadLine(), out expenses))
+            {
+                Console.Write("Invalid input! Enter valid expenses: ");
+            }
+            updated.Expenses = expenses;
 
             Console.Write("New Employees: ");
-            updated.Employees = Convert.ToInt32(Console.ReadLine());
+            int employees;
+            while (!int.TryParse(Console.ReadLine(), out employees))
+            {
+                Console.Write("Invalid input! Enter valid employees: ");
+            }
+            updated.Employees = employees;
 
             Console.Write("New Products: ");
-            updated.Products = Convert.ToInt32(Console.ReadLine());
+            int products;
+            while (!int.TryParse(Console.ReadLine(), out products))
+            {
+                Console.Write("Invalid input! Enter valid products: ");
+            }
+            updated.Products = products;
 
-            if (service.UpdateStore(updated))
-                Console.WriteLine("Updated!");
+            if (ConfirmAction("Do you want to update this store?"))
+            {
+                if (service.UpdateStore(updated))
+                    Console.WriteLine("Updated!");
+                else
+                    Console.WriteLine("Store not found!");
+            }
             else
-                Console.WriteLine("Store not found!");
+            {
+                    Console.WriteLine("Store update cancelled");
+            }
+
         }
         static void DeleteStore()
         {
             ViewStores();
 
-            Console.Write("Enter Store ID: ");
-            Guid id = Guid.Parse(Console.ReadLine());
+           
+            Guid id;
+            while (true)
+            {
+                Console.Write("Enter Store ID: ");
+                string input = Console.ReadLine();
 
-            if (service.DeleteStore(id))
-                Console.WriteLine("Deleted!");
+                if (Guid.TryParse(input, out id))
+                    break;
+
+                Console.WriteLine("Invalid ID format! Try again.");
+            }
+
+
+
+            if (ConfirmAction("Do you want to delete this store?"))
+            {
+                if (service.DeleteStore(id))
+                    Console.WriteLine("Deleted!");
+                else
+                    Console.WriteLine("Store not found!");
+            }
             else
-                Console.WriteLine("Store not found!");
+            {
+                    Console.WriteLine("Store deletion cancelled");
+
+            }
         }
+
+        static bool ConfirmAction(string message) 
+        {
+            Console.Write($"{message}(y/n): ");
+            string input= Console.ReadLine().ToLower();
+
+            return input == "y" || input == "yes";
+
+        }
+
     }
 }

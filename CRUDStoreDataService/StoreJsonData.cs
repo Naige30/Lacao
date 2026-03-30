@@ -34,10 +34,14 @@ namespace CRUDStoreDataService
         }
         private void SaveDataToJsonFile()
         {
-            using (var outputStream=System.IO.File.OpenWrite(_jsonFileName))
+            var options = new JsonSerializerOptions
             {
-                JsonSerializer.Serialize<List<Store>>(new Utf8JsonWriter(outputStream, new JsonWriterOptions { SkipValidation = true, Indented = true }), stores);
-            }
+                WriteIndented = true
+            };
+
+            string json = JsonSerializer.Serialize(stores, options);
+
+            System.IO.File.WriteAllText(_jsonFileName, json);
         }
         private void RetrieveDataFromJsonFile()
         {
