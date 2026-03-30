@@ -1,6 +1,6 @@
 [
   {
-    "StoreId": "704832bb-1b63-4138-8808-c0d77bcdf017",
+    "StoreId": "9bcdc05b-de3f-43b8-ad33-676133089e2d",
     "Name": "Ligaya Store",
     "Location": "Makati City",
     "Profit": 100000,
@@ -9,7 +9,7 @@
     "Products": 500
   },
   {
-    "StoreId": "a1bc1893-14c1-4c78-bfd4-dd455f71fd66",
+    "StoreId": "15cc1bbd-32c1-4ed1-bc6a-429785e7626d",
     "Name": "Amaranth Store",
     "Location": "Muntinlupa City",
     "Profit": 999999,
@@ -18,7 +18,7 @@
     "Products": 300
   },
   {
-    "StoreId": "39484748-f35f-43c1-aa48-168907e4084c",
+    "StoreId": "e0e2d478-084d-49a0-9853-fcacb851faf4",
     "Name": "Rizen Store",
     "Location": "San Pedro Laguna",
     "Profit": 670000,
@@ -27,21 +27,12 @@
     "Products": 900
   },
   {
-    "StoreId": "dda58f30-201c-4b13-8daa-1c1fcceffa4d",
-    "Name": "Gian",
-    "Location": "cebu",
-    "Profit": 90,
-    "Expenses": 1,
-    "Employees": 1,
-    "Products": 14
-  },
-  {
-    "StoreId": "ef8e855e-eea5-43c9-9fd1-e9bc04d122b7",
-    "Name": "SM Store Muntinlupa",
-    "Location": "Tunasan, Muntinlupa",
-    "Profit": 900,
-    "Expenses": 140,
-    "Employees": 12,
-    "Products": 10
+    "StoreId": "499562a2-bcd9-487d-8a13-6d84ec8d0d1c",
+    "Name": "AD STORE",
+    "Location": "AD STREET",
+    "Profit": 24556,
+    "Expenses": 19000,
+    "Employees": 142,
+    "Products": 900
   }
 ]
