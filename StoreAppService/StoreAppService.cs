@@ -11,7 +11,7 @@ namespace StoreAppService
     //Business Logic Layer
     public class StoreService
     {
-        private IStoreDataService repo = new StoreJsonData();
+        private IStoreDataService repo = new StoreDBData();
 
         public void AddStore(Store store)
         {
@@ -39,6 +39,11 @@ namespace StoreAppService
                 return true;
             }
             return false;
+        }
+
+        public Store? GetStore(Guid storeId)
+        {
+            return repo.GetById(storeId);
         }
     }
 }   

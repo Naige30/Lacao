@@ -1,4 +1,4 @@
-﻿using StoreModels;
+﻿ using StoreModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,6 +10,11 @@ namespace CRUDStoreDataService
     //Data Logic Layer
     public class StoreRepository
     {
+        IStoreDataService _dataService;
+        public StoreRepository(IStoreDataService storeDataService)
+        {
+            _dataService = storeDataService;
+        }
         private List<Store> stores = new List<Store>();
         public List<Store> GetAllStores()
         {
@@ -35,5 +40,10 @@ namespace CRUDStoreDataService
             }
             return false;
         }
+        public StoreModels.Store? GetById(Guid id)
+        {
+            return _dataService.GetById(id);
+        }
+      
     }
 }
